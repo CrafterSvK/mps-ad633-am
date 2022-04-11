@@ -2,21 +2,13 @@ Amplitudovy modulator s AD633
 *
 .LIB AD633.lib
 *
-.PARAM pi=3.141592
-* modulovaný signál
-.PARAM input_f=1k
-.PARAM input_omega={2*pi*input_f}
-* nosný signál
-.PARAM nosna_f=1Meg
-.PARAM nosna_omega={2*pi*nosna_f}
+.PARAM nosna_f=50k
+.PARAM modulovana_f=1k
 *
+XAM X1 0 Y1 0 VNEG Y1 W VPOS ad633; AD633
 * modulovaný a nosný vstupný signál
-XAM X1 0 Y1 0 VNEG Y1 W VPOS ad633
-
-Vm X1 0 AC 1 0 SIN(0 1 1000)
-
-En Y1 0 VALUE={10*sin(nosna_omega)}
-
+Vm X1 0 AC 1 0 SIN(0 1 {modulovana_f})
+Vn Y1 0 AC 15 0 SIN(0 1 {nosna_f})
 * napájanie
 Vpos VPOS 0 15V
 Vneg VNEG 0 -15V
